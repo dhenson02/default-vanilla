@@ -58,6 +58,7 @@
     "fastclick": "^1.0.6",
     "fastdom": "^1.0.2",
     "immutable": "^3.8.1",
+    "jquery": "^3.0.0",
     "lodash": "^4.13.1"
   }
 }

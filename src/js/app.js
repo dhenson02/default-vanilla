@@ -2,12 +2,17 @@
 import Immutable from 'immutable';
 import reqwest from 'reqwest';
 import fastdom from 'fastdom';
+import $ from 'jquery';
+import dt from 'datatables.net';
+import buttons from 'datatables.net-buttons';
 
+dt(window, $);
+buttons(window, $);
 const main_ = document.getElementById('main');
 const button_ = document.getElementById('clicker');
 
 const handleClick = function ( event ) {
-    const noob_ = document.createElement('textarea');
+    const noob_ = $('#example');
 
     noob_.style = Immutable.Map({
         borderColor: '#AACCEE',
@@ -18,6 +23,7 @@ const handleClick = function ( event ) {
     fastdom.measure(function () {
         const height = document.body.innerHeight;
         const width = document.body.innerWidth;
+        const $noob_ = $(noob_);
         reqwest({
             url: '/',
             data: {
@@ -27,15 +33,15 @@ const handleClick = function ( event ) {
             success ( response ) {
                 const text = document.createTextNode(JSON.stringify(arguments));
                 fastdom.mutate(function () {
-                    noob_.appendChild(text);
-                    main_.appendChild(noob_);
+                    $noob_.DataTable();
+                    main_.appendChild($noob_);
                 });
             },
             error ( response ) {
                 const text = document.createTextNode(JSON.stringify(arguments));
                 fastdom.mutate(function () {
-                    noob_.appendChild(text);
-                    main_.appendChild(noob_);
+                    $noob_.DataTable();
+                    main_.appendChild($noob_);
                 });
             }
         });
